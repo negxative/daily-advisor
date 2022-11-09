@@ -29,7 +29,7 @@ const submit=async (e)=>{
     })
   }
 
-  headRef.current.style.transform="translateY(-200px)";
+  headRef.current.style.transform="translateY(-300px)";
   bodyRef.current.style.transform="translateY(-100px)";
 
 }
