@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef ,useState} from 'react'
 import { HomeContents } from '../HomeScreen/HomeContents';
+import { ResultsList } from './ResultsList/ResultsList';
 import "./SearchScreen.scss"
 
 export const SearchScreen = () => {
@@ -9,7 +10,7 @@ export const SearchScreen = () => {
   const  bodyRef=useRef(null);
   const  contentRef=useRef(null);
   const [inputValue,setInputValue]=useState();
-  const  [searchResults,setSearchResults]=useState();
+  const [searchResults,setSearchResults]=useState();
 
 useEffect(() => {
   inputRef.current.focus();
@@ -18,9 +19,9 @@ useEffect(() => {
 const submit=async (e)=>{
   e.preventDefault(); 
   const res=await axios.get(`https://api.adviceslip.com/advice/search/${inputValue}`);
-  
   try{
-    setSearchResults(res.data.slips[0]);
+    if(res.data.slips[0])
+    setSearchResults(res.data.slips);
   }
   catch(e){
     setSearchResults({
@@ -33,8 +34,6 @@ const submit=async (e)=>{
   bodyRef.current.style.transform="translateY(-100px)";
 
 }
-
-
   return (
     <div className='Search-Container'>
         <div className='Search-Head' ref={headRef}>
@@ -45,7 +44,7 @@ const submit=async (e)=>{
            <button onClick={submit}>Search</button>
         </form>
         <div  ref={contentRef} >
-            {searchResults?<HomeContents response={searchResults} dataFetcher={null} />:""}
+            {searchResults?<ResultsList response={searchResults} />:""}
         </div>
     </div>
   )
