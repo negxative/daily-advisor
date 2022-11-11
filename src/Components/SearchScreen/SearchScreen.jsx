@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useEffect, useRef ,useState} from 'react'
-import { HomeContents } from '../HomeScreen/HomeContents';
 import { ResultsList } from './ResultsList/ResultsList';
 import "./SearchScreen.scss"
 
@@ -11,7 +10,7 @@ export const SearchScreen = () => {
   const  contentRef=useRef(null);
   const [inputValue,setInputValue]=useState();
   const [searchResults,setSearchResults]=useState();
-
+  
 useEffect(() => {
   inputRef.current.focus();
 },[])

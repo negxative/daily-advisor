@@ -15,7 +15,7 @@ export const ResultsList = ({response}) => {
     }
     ));
     navigate("/");
-  }
+  } 
   let x;
   try{
    x= response.map((el,index)=>{
